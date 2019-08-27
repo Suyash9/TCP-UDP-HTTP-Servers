@@ -1,0 +1,119 @@
+Task1:
+
+IPv4 address: 10.22.36.179
+IPv6 address: 2001:630:d0:1002:e47a:1e3:4774:fb13
+DHCP Server: 152.78.111.198
+Default gateway: 10.22.39.254
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Task2:
+
+465	38.726830	10.22.36.179	152.78.110.110	DNS	88	Standard query 0xdd4d AAAA svm-km2-nets.ecs.soton.ac.uk
+Internet Protocol Version 4, Src: 10.22.36.179, Dst: 152.78.110.110
+User Datagram Protocol, Src Port: 65515, Dst Port: 53
+Domain Name System (query)
+    Transaction ID: 0xdd4d
+    Flags: 0x0100 Standard query
+    Questions: 1
+    Answer RRs: 0
+    Authority RRs: 0
+    Additional RRs: 0
+    Queries
+        svm-km2-nets.ecs.soton.ac.uk: type AAAA, class IN
+            Name: svm-km2-nets.ecs.soton.ac.uk
+            [Name Length: 28]
+            [Label Count: 5]
+            Type: AAAA (IPv6 Address) (28)
+            Class: IN (0x0001)
+    [Response In: 466]
+
+
+466	38.727414	152.78.110.110	10.22.36.179	DNS	164	Standard query response 0xdd4d AAAA svm-km2-nets.ecs.soton.ac.uk CNAME svm00026.ecs.soton.ac.uk SOA srv00170.soton.ac.uk
+Internet Protocol Version 4, Src: 152.78.110.110, Dst: 10.22.36.179
+User Datagram Protocol, Src Port: 53, Dst Port: 65515
+Domain Name System (response)
+    Transaction ID: 0xdd4d
+    Flags: 0x8580 Standard query response, No error
+    Questions: 1
+    Answer RRs: 1
+    Authority RRs: 1
+    Additional RRs: 0
+    Queries
+        svm-km2-nets.ecs.soton.ac.uk: type AAAA, class IN
+            Name: svm-km2-nets.ecs.soton.ac.uk
+            [Name Length: 28]
+            [Label Count: 5]
+            Type: AAAA (IPv6 Address) (28)
+            Class: IN (0x0001)
+    Answers
+        svm-km2-nets.ecs.soton.ac.uk: type CNAME, class IN, cname svm00026.ecs.soton.ac.uk
+            Name: svm-km2-nets.ecs.soton.ac.uk
+            Type: CNAME (Canonical NAME for an alias) (5)
+            Class: IN (0x0001)
+            Time to live: 28800
+            Data length: 11
+            CNAME: svm00026.ecs.soton.ac.uk
+    Authoritative nameservers
+    [Request In: 465]
+    [Time: 0.000584000 seconds]
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Task3:
+
+Tracing route to google.co.uk [2a00:1450:4009:811::2003]
+over a maximum of 30 hops:
+
+  1     1 ms    <1 ms    <1 ms  2001:630:d0:1002::2
+  2    <1 ms    <1 ms    <1 ms  hfc-core-fw1-int.net.soton.ac.uk [2001:630:d0:100::7]
+  3     1 ms     1 ms     1 ms  b59ev-xesw1-fw.net.soton.ac.uk [2001:630:d0:1::2]
+  4    <1 ms    <1 ms    <1 ms  2001:630:0:9006::a5
+  5     2 ms     1 ms     1 ms  2001:630:0:1006:10::e
+  6     3 ms     3 ms     3 ms  ae23-0.londpg-sbr2.ja.net [2001:630:0:10::1a9]
+  7     3 ms     3 ms     3 ms  ae29.londhx-sbr1.ja.net [2001:630:0:10::1c9]
+  8     *        *        *     Request timed out.
+  9     4 ms     4 ms     3 ms  2001:4860:0:1100::1
+ 10     4 ms     4 ms     3 ms  2001:4860:0:1::2329
+ 11     3 ms     3 ms     3 ms  lhr25s15-in-x03.1e100.net [2a00:1450:4009:811::2003]
+
+Trace complete.
+
+
+Tracing route to google.jp [2a00:1450:4009:815::2003]
+over a maximum of 30 hops:
+
+  1    45 ms     1 ms     1 ms  2001:630:d0:1002::2
+  2    <1 ms    <1 ms    <1 ms  hfc-core-fw1-int.net.soton.ac.uk [2001:630:d0:100::7]
+  3    82 ms     3 ms    16 ms  b59ev-xesw1-fw.net.soton.ac.uk [2001:630:d0:1::2]
+  4     1 ms    <1 ms    <1 ms  2001:630:0:9006::a5
+  5     2 ms     1 ms     1 ms  2001:630:0:1006:10::e
+  6     3 ms     3 ms     3 ms  ae23-0.londpg-sbr2.ja.net [2001:630:0:10::1a9]
+  7     3 ms     3 ms     3 ms  ae29.londhx-sbr1.ja.net [2001:630:0:10::1c9]
+  8     *        *        *     Request timed out.
+  9     *        *        *     Request timed out.
+ 10     4 ms     4 ms     4 ms  2001:4860:0:1::2acd
+ 11     4 ms     4 ms     4 ms  lhr35s11-in-x03.1e100.net [2a00:1450:4009:815::2003]
+
+Trace complete.
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Task4:
+
+The routes to both google.co.uk and google.jp take the same number of hops. From the round trip times, we can deduce that in most cases the route to google.co.uk
+takes almost the same time as the route to google.jp, since they are both located in London, which can be observed from their IP addresses on iplocation.com.
+However, in certain cases the route to google.co.uk is shorter than that to google.jp, and furthermore, in some cases the requests even time out. For example, 
+the IPv6 address for hop 3 indicates that it is located in Southampton which is quite close to London, but the request for google.jp takes much longer than the
+request for google.co.uk.
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Task5:
+
+22/tcp   open     ssh       OpenSSH 7.4 (protocol 2.0)
+80/tcp   open     http      Apache httpd 2.4.6 ((Red Hat Enterprise Linux))
+111/tcp  open     rpcbind   2-4 (RPC #100000)
+1720/tcp open     h323q931?
+5002/tcp open     rfe?
